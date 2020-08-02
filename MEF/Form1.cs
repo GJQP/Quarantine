@@ -24,7 +24,9 @@ namespace MEF
 
         // Objetos necesarios
         public S_objeto[] ListaObjetos = new S_objeto[10];
-        public S_objeto MiBateria;
+        public S_objeto MiCama;
+        public S_objeto MiCocina;
+        public S_objeto MiRadio;
 
         //TEST
         public Image yoshi = Image.FromFile("C:\\Users\\Gustavo\\Documents\\Gustavo\\UCAB\\C#\\MSF\\C#\\MEF\\Image1.jpg");
@@ -45,23 +47,22 @@ namespace MEF
             // Cremos un objeto para tener valores aleatorios
             Random random = new Random();
 
-            // Recorremos todos los objetos
-            for (int n = 0; n < 10; n++)
-            {
-                // Colocamos las coordenadas
-                ListaObjetos[n].x = random.Next(0, 639);
-                ListaObjetos[n].y = random.Next(0, 479);
+            // Colocamos la cama
+            MiCama.x = random.Next(0, 639);
+            MiCama.y = random.Next(0, 479);
+            MiCama.activo = true;
 
-                // Lo indicamos activo
-                ListaObjetos[n].activo = true;
-            }
+            // Colocamos la cocina
+            MiCocina.x = random.Next(0, 639);
+            MiCocina.y = random.Next(0, 479);
+            MiCocina.activo = true;
 
-            // Colocamos la bateria
-            MiBateria.x = random.Next(0, 639);
-            MiBateria.y = random.Next(0, 479);
-            MiBateria.activo = true;
+            // Colocamos la radio
+            MiRadio.x = random.Next(0, 639);
+            MiRadio.y = random.Next(0, 479);
+            MiRadio.activo = true;
 
-            maquina.Inicializa(ref ListaObjetos, MiBateria);
+            maquina.Inicializa(MiCama,MiCocina,MiRadio);
 
 
         }
@@ -206,13 +207,14 @@ namespace MEF
                 //e.Graphics.DrawRectangle(Pens.Green, maquina.CoordX - 4, maquina.CoordY - 4, 20, 20);
                 e.Graphics.DrawImage(yoshi, maquina.CoordX - 4, maquina.CoordY - 4, 20, 20);
 
-            // Dibujamos los objetos
-            for (int n = 0; n < 10; n++)
-                if (ListaObjetos[n].activo == true)
-                    e.Graphics.DrawRectangle(Pens.Indigo, ListaObjetos[n].x - 4, ListaObjetos[n].y - 4, 20, 20);
+            // Dibujamos la cama
+            e.Graphics.DrawRectangle(Pens.IndianRed, MiCama.x - 4, MiCama.y - 4, 20, 20);
 
-            // Dibujamos la bateria
-            e.Graphics.DrawRectangle(Pens.IndianRed, MiBateria.x - 4, MiBateria.y - 4, 20, 20);
+            // Dibujamos la cocina
+            e.Graphics.DrawRectangle(Pens.Aqua, MiCocina.x - 4, MiCocina.y - 4, 20, 20);
+
+            // Dibujamos la radio
+            e.Graphics.DrawRectangle(Pens.Green, MiRadio.x - 4, MiRadio.y - 4, 20, 20);
 
             // Indicamos el estado en que se encuentra la maquina
             e.Graphics.DrawString("Estado -> " + maquina.EstadoM.ToString(), fuente, brocha, 10, 10);

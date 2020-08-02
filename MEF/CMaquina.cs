@@ -19,13 +19,11 @@ namespace MEF
 		// Enumeracion de los diferentes estados
 		public enum  estados
 		{
-			BUSQUEDA,
-			NBUSQUEDA,
-			IRBATERIA,
-			RECARGAR,
-			MUERTO,
-			ALEATORIO,
-			
+			DORMIR, //0
+            COMER, //1 
+            DIVERTIRSE, //2
+            TRASLADARSE, //3
+            MUERTO //4
 		};
 
 		// Esta variable representa el estado actual de la maquina
@@ -35,14 +33,15 @@ namespace MEF
 		private int x,y;
 
 		// Arreglo para guardar una copia de los objetos
-		private S_objeto[] objetos = new S_objeto[10];
-		private S_objeto bateria;
+        private S_objeto cama;
+        private S_objeto cocina;
+        private S_objeto radio;
 
-		// Variable del indice del objeto que buscamos
-		private int indice;
+        //Variable para dormir 
+        private int sueno;
 
-		// Variable para la energia;
-		private int energia;
+        //Variable para hambre
+        private int hambre;
 
 		// Creamos las propiedades necesarias
 		public int CoordX 
@@ -66,20 +65,22 @@ namespace MEF
 
 			// Inicializamos las variables
 
-			Estado=(int)estados.NBUSQUEDA;	// Colocamos el estado de inicio.
+			Estado=(int)estados.TRASLADARSE;	// Colocamos el estado de inicio.
 			x=320;		// Coordenada X
 			y=240;		// Coordenada Y
-			indice=-1;	// Empezamos como si no hubiera objeto a buscar
-			energia=800;
+			//indice=-1;	// Empezamos como si no hubiera objeto a buscar
+			sueno = 400;
+            hambre = 100;
 		}
 
-		public void Inicializa(ref S_objeto [] Pobjetos, S_objeto Pbateria)
+		public void Inicializa(S_objeto cama, S_objeto cocina, S_objeto radio)
 		{
 			// Colocamos una copia de los objetos y la bateria
 			// para pode trabajar internamente con la informacion
 
-			objetos=Pobjetos;
-			bateria=Pbateria;
+			this.cama = cama;
+            this.cocina = cocina;
+            this.radio = radio;
 
 		}
 
@@ -89,170 +90,132 @@ namespace MEF
 			
 			switch(Estado)
 			{
-				case (int)estados.BUSQUEDA:
-					// Llevamos a cabo la accion del estado
-					Busqueda();
+				case ( int ) estados.TRASLADARSE:
+                    TRASLADARSE();
 
-					// Verificamos por transicion
-					if(x==objetos[indice].x && y==objetos[indice].y)
-					{
-						// Desactivamos el objeto encontrado
-						objetos[indice].activo=false;
-						
-						// Cambiamos de estado
-						Estado=(int)estados.NBUSQUEDA;
+                    
+                    if (sueno < 0 || hambre < 0)
+                        Estado = (int)estados.MUERTO;
 
-					}
-					else if(energia<400) // Checamos condicion de transicion
-						Estado=(int)estados.IRBATERIA;
+                    //moverse
+                    if (x == cama.x && y == cama.y)
+                        Estado = (int)estados.DORMIR;
 
-					break;
+                    if (x == cocina.x && y == cocina.y)
+                        Estado = (int)estados.COMER;
 
-				case (int)estados.NBUSQUEDA:
-					// Llevamos a cabo la accion del estado
-					NuevaBusqueda();
+                    if (x == radio.x && y == radio.y)
+                        Estado = (int)estados.DIVERTIRSE;
+                       
 
-					// Verificamos por transicion
-					if(indice==-1)	// Si ya no hay objetos, entonces aleatorio
-						Estado=(int)estados.ALEATORIO;
-					else
-						Estado=(int)estados.BUSQUEDA;
+                    break;
 
-					break;
-					
-				case (int)estados.IRBATERIA:
-					// Llevamos a cabo la accion del estado
-					IrBateria();
+                case (int)estados.DORMIR:
 
-					// Verificamos por transicion
-					if(x==bateria.x && y==bateria.y)				
-						Estado=(int)estados.RECARGAR;
+                    DORMIR();
 
-					if(energia==0)
-						Estado=(int)estados.MUERTO;
+                    if (sueno == 400)
+                        Estado = (int)estados.TRASLADARSE;
 
-					break;
+                    break;
 
-				case (int)estados.RECARGAR:
-					// Llevamos a cabo la accion del estado
-					Recargar();
+                case (int)estados.COMER:
 
-					// Hacemos la transicion
-					Estado=(int)estados.BUSQUEDA;
+                    COMER();
 
-					break;
+                    if (hambre == 100 || sueno < 40)
+                        Estado = (int)estados.TRASLADARSE;
 
-				case (int)estados.MUERTO:
-					// Llevamos a cabo la accion del estado
-					Muerto();
+                    break;
 
-					// No hay condicion de transicion
-					
-					break;
+                case (int)estados.DIVERTIRSE:
 
-				case (int)estados.ALEATORIO:
-					// Llevamos a cabo la accion del estado
-					Aleatorio();
+                    DIVERTIRSE();
 
-					// Verificamos por transicion
-					if(energia==0)
-						Estado=(int)estados.MUERTO;
+                    if (hambre < 10 || sueno < 40)
+                        Estado = (int)estados.TRASLADARSE;
 
-					break;
+
+                    break;
+
+                case (int)estados.MUERTO:
+
+                    //NO HAY TRANSICION
+
+                    break;
+
+
 
 			}
 
 		}
 
-		public void Busqueda()
-		{
-			// En esta funcion colocamos la logica del estado Busqueda
-			
-			// Nos dirigimos hacia el objeto actual
-			if(x<objetos[indice].x)
-				x++;
-			else if(x>objetos[indice].x)
-				x--;
+        private void TRASLADARSE() {
 
-			if(y<objetos[indice].y)
-				y++;
-			else if(y>objetos[indice].y)
-				y--;
+            //ir a la cama SI TIENE SUEÑO
+            if (sueno < 40) //tiene sueno
+            {
+                //moverse
+                if (x < cama.x)
+                    x++;
+                else if (x > cama.x)
+                    x--;
 
-			// Disminuimos la energia
-			energia--;
+                if (y < cama.y)
+                    y++;
+                else if (y > cama.y)
+                    y--;
 
-		}
+            }
+            //ir a la cocina SI TIENE HAMBRE Y NO TIENE SUEÑO
+            else if (hambre < 10)
+            {
+                //moverse
+                if (x < cocina.x)
+                    x++;
+                else if (x > cocina.x)
+                    x--;
 
-		public void NuevaBusqueda()
-		{
-			// En esta funcion colocamos la logica del estado Nueva Busqueda
-			// Verificamos que haya otro objeto a buscar
-			indice=-1;
+                if (y < cocina.y)
+                    y++;
+                else if (y > cocina.y)
+                    y--;
 
-			// Recorremos el arreglo buscando algun objeto activo
-			for(int n=0;n<10;n++)
-			{
-				if(objetos[n].activo==true)
-					indice=n;
-			}
-		}
+            }
+            //ir a la radio SI NO TIENE SUEÑO NI HAMBRE
+            else
+            {
+                //moverse
+                if (x < radio.x)
+                    x++;
+                else if (x > radio.x)
+                    x--;
 
-		public void Aleatorio()
-		{
-			// En esta funcion colocamos la logica del estado Aleatorio
-			// Se mueve al azar
+                if (y < radio.y)
+                    y++;
+                else if (y > radio.y)
+                    y--;
+            }
 
-			// Cremos un objeto para tener valores aleatorios
-			Random random=new Random();
+            //decrementar sueno y hambre
+            sueno--;
+            hambre--;
+        }
 
-			int nx=random.Next(0,3);
-			int ny=random.Next(0,3);
+        private void DORMIR() {
+            sueno++;
+            hambre--;
+        }
 
-			// Modificamos la posicion al azar
-			x+=nx-1;
-			y+=ny-1;
+        private void COMER() {
+            hambre++;
+            sueno--;
+        }
 
-			energia--;
-
-		}
-
-		public void IrBateria()
-		{
-			// En esta funcion colocamos la logica del estado Ir Bateria
-
-			// Nos dirigimos hacia la bateria
-			if(x<bateria.x)
-				x++;
-			else if(x>bateria.x)
-				x--;
-
-			if(y<bateria.y)
-				y++;
-			else if(y>bateria.y)
-				y--;
-
-			// Disminuimos la energia
-			energia--;
-
-		}
-
-		public void Recargar()
-		{
-			// En esta funcion colocamos la logica del estado Recargar
-			energia=1000;
-
-		}
-
-		public void Muerto()
-		{
-			// En esta funcion colocamos la logica del estado Muerto
-
-			// Sonamos un beep de la computadora
-
-
-		}
-
+        private void DIVERTIRSE() { 
+           sueno--;
+           hambre--;
+        }
 
 
 	}
