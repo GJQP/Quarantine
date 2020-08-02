@@ -1,0 +1,23 @@
+C:\Users\Enrique\Documents\Documentos de Programacion\Visual Studio 2013\Backup Manuales\InteligenciaArtificial\Cap2\MEF\obj\Debug\MEF.exe
+C:\Users\Enrique\Documents\Documentos de Programacion\Visual Studio 2013\Backup Manuales\InteligenciaArtificial\Cap2\MEF\obj\Debug\MEF.pdb
+C:\Users\Enrique\Documents\Documentos de Programacion\Visual Studio 2013\Backup Manuales\InteligenciaArtificial\Cap2\MEF\bin\Debug\MEF.exe
+C:\Users\Enrique\Documents\Documentos de Programacion\Visual Studio 2013\Backup Manuales\InteligenciaArtificial\Cap2\MEF\bin\Debug\MEF.pdb
+C:\Users\Enrique\Documents\Documentos de Programacion\Visual Studio 2013\Backup Manuales\InteligenciaArtificial\Cap2\MEF\obj\Debug\MEF.csprojResolveAssemblyReference.cache
+C:\Users\Enrique\Documents\Documentos de Programacion\Visual Studio 2013\Backup Manuales\InteligenciaArtificial\Cap2\MEF\obj\Debug\MEF.Form1.resources
+C:\Users\Enrique\Documents\Documentos de Programacion\Visual Studio 2013\Backup Manuales\InteligenciaArtificial\Cap2\MEF\obj\Debug\MEF.csproj.GenerateResource.Cache
+C:\Users\Enrique\Documents\Visual Studio 2017\Mis programas\Maquina de Estados Finitos\MEF\bin\Debug\MEF.exe.config
+C:\Users\Enrique\Documents\Visual Studio 2017\Mis programas\Maquina de Estados Finitos\MEF\bin\Debug\MEF.exe
+C:\Users\Enrique\Documents\Visual Studio 2017\Mis programas\Maquina de Estados Finitos\MEF\bin\Debug\MEF.pdb
+C:\Users\Enrique\Documents\Visual Studio 2017\Mis programas\Maquina de Estados Finitos\MEF\obj\Debug\MEF.csprojResolveAssemblyReference.cache
+C:\Users\Enrique\Documents\Visual Studio 2017\Mis programas\Maquina de Estados Finitos\MEF\obj\Debug\MEF.Form1.resources
+C:\Users\Enrique\Documents\Visual Studio 2017\Mis programas\Maquina de Estados Finitos\MEF\obj\Debug\MEF.csproj.GenerateResource.Cache
+C:\Users\Enrique\Documents\Visual Studio 2017\Mis programas\Maquina de Estados Finitos\MEF\obj\Debug\MEF.exe
+C:\Users\Enrique\Documents\Visual Studio 2017\Mis programas\Maquina de Estados Finitos\MEF\obj\Debug\MEF.pdb
+C:\Users\Gustavo\Documents\Gustavo\UCAB\C#\MSF\C#\MEF\bin\Debug\MEF.exe.config
+C:\Users\Gustavo\Documents\Gustavo\UCAB\C#\MSF\C#\MEF\bin\Debug\MEF.exe
+C:\Users\Gustavo\Documents\Gustavo\UCAB\C#\MSF\C#\MEF\bin\Debug\MEF.pdb
+C:\Users\Gustavo\Documents\Gustavo\UCAB\C#\MSF\C#\MEF\obj\Debug\MEF.csprojResolveAssemblyReference.cache
+C:\Users\Gustavo\Documents\Gustavo\UCAB\C#\MSF\C#\MEF\obj\Debug\MEF.Form1.resources
+C:\Users\Gustavo\Documents\Gustavo\UCAB\C#\MSF\C#\MEF\obj\Debug\MEF.csproj.GenerateResource.Cache
+C:\Users\Gustavo\Documents\Gustavo\UCAB\C#\MSF\C#\MEF\obj\Debug\MEF.exe
+C:\Users\Gustavo\Documents\Gustavo\UCAB\C#\MSF\C#\MEF\obj\Debug\MEF.pdb
