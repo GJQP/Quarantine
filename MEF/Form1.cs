@@ -7,6 +7,7 @@ using System.Data;
 using System.IO;
 using System.Reflection;
 
+
 namespace MEF
 {
     
@@ -156,17 +157,16 @@ namespace MEF
             // 
             // timer1
             // 
-            this.timer1.Interval = 1;
+            this.timer1.Interval =1;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(6, 15);
             this.ClientSize = new System.Drawing.Size(692, 500);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Menu = this.mainMenu1;
             this.Name = "Form1";
-            this.Text = "Maquina de estados finitos";
+            this.Text = "Quarantine";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.ResumeLayout(false);
@@ -204,11 +204,16 @@ namespace MEF
             // Esta funcion es el handler del timer
             // Aqui tendremos la logica para actualizar nuestra maquina de estados
 
-            // Actualizamos a la maquina
-            maquina.Control();
+            //Repetir cada milisegundo
+            for (int i = 0; i < 4; i++)
+            {
+                // Actualizamos a la maquina
+                maquina.Control();
 
-            // Mandamos a redibujar la pantalla
-            this.Invalidate();
+                // Mandamos a redibujar la pantalla
+                this.Invalidate();
+            }
+          
         }
 
         private void Form1_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
