@@ -87,8 +87,8 @@ namespace MEF
 			x=320;		// Coordenada X
 			y=240;		// Coordenada Y
 			//indice=-1;	// Empezamos como si no hubiera objeto a buscar
-			sueno = MAX_SUENO;
-            hambre = MAX_HAMBRE;
+			sueno = new Random().Next(MAX_SUENO/2, MAX_SUENO+1);
+            hambre = new Random().Next(MAX_HAMBRE / 2, MAX_HAMBRE + 1); ;
 		}
 
 		public void Inicializa(S_objeto cama, S_objeto cocina, S_objeto sofa)
@@ -149,7 +149,6 @@ namespace MEF
 
                     if (x == sofa.x && y == sofa.y)
                     {
-                        
                         imagenIndex = new Random().Next(6, 10);
                         Estado = (int)estados.DIVERTIRSE;
                     }
@@ -172,7 +171,7 @@ namespace MEF
 
                     COMER();
 
-                    if (hambre == MAX_HAMBRE || sueno < MIN_SUENO)
+                    if (hambre >= MAX_HAMBRE || sueno < MIN_SUENO)
                         Estado = (int)estados.TRASLADARSE;
 
                     break;
@@ -251,12 +250,12 @@ namespace MEF
         }
 
         private void DORMIR() {
-            sueno++;
+            sueno+=4;
             //hambre--;
         }
 
         private void COMER() {
-            hambre++;
+            hambre+=2;
             sueno--;
         }
 
