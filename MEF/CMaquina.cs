@@ -210,9 +210,9 @@ namespace MEF
                 else if (x > cama.x)
                     x--;
 
-                if (y < cama.y)
+                if (y < cama.y && x== cama.x)
                     y++;
-                else if (y > cama.y)
+                else if (y > cama.y && x==cama.x)
                     y--;
 
             }
@@ -220,9 +220,9 @@ namespace MEF
             else if (hambre < MIN_HAMBRE)
             {
                 //moverse
-                if (x < cocina.x)
+                if (x < cocina.x && y == cocina.y)
                     x++;
-                else if (x > cocina.x)
+                else if (x > cocina.x && y== cocina.y)
                     x--;
 
                 if (y < cocina.y)
@@ -235,9 +235,9 @@ namespace MEF
             else
             {
                 //moverse
-                if (x < sofa.x)
+                if (x < sofa.x && y==sofa.y)
                     x++;
-                else if (x > sofa.x)
+                else if (x > sofa.x && y==sofa.y)
                     x--;
 
                 if (y < sofa.y)
