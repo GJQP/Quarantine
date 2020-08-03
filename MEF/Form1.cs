@@ -46,6 +46,7 @@ namespace MEF
             //
             // TODO: agregar código de constructor después de llamar a InitializeComponent
             //
+
             
             // Inicializamos el dir actual
             currentDirectory = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)).FullName).FullName;
@@ -216,15 +217,15 @@ namespace MEF
         {
             // Creamos la fuente y la brocha para el texto
             Font fuente = new Font("Arial", 16);
-            SolidBrush brocha = new SolidBrush(Color.Black);
+            SolidBrush brocha = new SolidBrush(Color.White);
            
             //e.Graphics.DrawImage AQUIIIIIIIIII
             // Dibujamos el robot
             if (maquina.EstadoM == (int)CMaquina.estados.MUERTO)
-                e.Graphics.DrawRectangle(Pens.Black, maquina.CoordX - 4, maquina.CoordY - 4, 20, 20);
+                e.Graphics.DrawRectangle(Pens.Black, maquina.CoordX - 4, maquina.CoordY - 4, 40, 40);
             else
                 //e.Graphics.DrawRectangle(Pens.Green, maquina.CoordX - 4, maquina.CoordY - 4, 20, 20);
-                e.Graphics.DrawImage(yoshi, maquina.CoordX - 4, maquina.CoordY - 4, 20, 20);
+                e.Graphics.DrawImage(maquina.getImagen(), maquina.CoordX - 4, maquina.CoordY - 4, 40, 40);
 
             // Dibujamos la cama
             e.Graphics.DrawRectangle(Pens.IndianRed, MiCama.x - 4, MiCama.y - 4, 20, 20);
@@ -234,9 +235,14 @@ namespace MEF
 
             // Dibujamos la radio
             e.Graphics.DrawRectangle(Pens.Green, MiRadio.x - 4, MiRadio.y - 4, 20, 20);
+            //e.Graphics.DrawImage(bailando, MiRadio.x - 4, MiRadio.y -4, 20, 20);
 
             // Indicamos el estado en que se encuentra la maquina
             e.Graphics.DrawString("Estado -> " + maquina.EstadoM.ToString(), fuente, brocha, 10, 10);
+
+            e.Graphics.DrawString("Sueno -> " + maquina.SuenoM.ToString(), fuente, brocha, 10, 40);
+
+            e.Graphics.DrawString("Hambre -> " + maquina.HambreM.ToString(), fuente, brocha, 10, 70);
 
 
         }
