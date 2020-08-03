@@ -51,6 +51,16 @@ namespace MEF
 
         private int imagenIndex; //llave de acceso a la imagen
 
+
+        //variables para los condicionales
+        public int MAX_SUENO;
+        public int MAX_HAMBRE;
+        public int MIN_SUENO;
+        public int MIN_HAMBRE;
+        
+
+
+
 		// Creamos las propiedades necesarias
 		public int CoordX 
 		{
@@ -70,19 +80,25 @@ namespace MEF
         public int SuenoM { get { return sueno; } }
 
         public int HambreM { get { return hambre; } }
-			
-		public CMaquina()
-		{
-			// Este es el contructor de la clase
 
-			// Inicializamos las variables
+        public CMaquina()
+        {
+            // Este es el contructor de la clase
 
-			Estado=(int)estados.TRASLADARSE;	// Colocamos el estado de inicio.
-			x=320;		// Coordenada X
-			y=240;		// Coordenada Y
-			//indice=-1;	// Empezamos como si no hubiera objeto a buscar
-			sueno = 1500;
-            hambre = 500;
+            // Inicializamos las variables
+
+            Estado = (int)estados.TRASLADARSE;  // Colocamos el estado de inicio.
+            x = 320;        // Coordenada X
+            y = 240;      // Coordenada Y
+                          //indice=-1;	// Empezamos como si no hubiera objeto a buscar
+
+            //colocar los valores umbrales
+            MAX_SUENO = 3000;
+            MAX_HAMBRE = 1000;
+            MIN_SUENO = 800;
+            MIN_HAMBRE = 400;
+            sueno = MAX_SUENO;
+            hambre = MAX_HAMBRE;
 		}
 
 		public void Inicializa(S_objeto cama, S_objeto cocina, S_objeto sofa)
@@ -153,7 +169,7 @@ namespace MEF
 
                     DORMIR();
 
-                    if (sueno >= 1500)
+                    if (sueno >= MAX_SUENO)
                     {
 
                         Estado = (int)estados.TRASLADARSE;
@@ -165,7 +181,7 @@ namespace MEF
 
                     COMER();
 
-                    if (hambre == 500 || sueno < 400)
+                    if (hambre == MAX_HAMBRE || sueno < MIN_SUENO)
                         Estado = (int)estados.TRASLADARSE;
 
                     break;
@@ -174,7 +190,7 @@ namespace MEF
 
                     DIVERTIRSE();
 
-                    if (hambre < 200 || sueno < 400)
+                    if (hambre < MIN_HAMBRE || sueno < MIN_SUENO)
                         Estado = (int)estados.TRASLADARSE;
 
 
@@ -194,7 +210,7 @@ namespace MEF
 
         private void TRASLADARSE() {
             //ir a la cama SI TIENE SUEÑO
-            if (sueno < 400) //tiene sueno
+            if (sueno < MIN_SUENO) //tiene sueno
             {
                 //moverse
                 if (x < cama.x)
@@ -209,7 +225,7 @@ namespace MEF
 
             }
             //ir a la cocina SI TIENE HAMBRE Y NO TIENE SUEÑO
-            else if (hambre < 200)
+            else if (hambre < MIN_HAMBRE)
             {
                 //moverse
                 if (x < cocina.x)

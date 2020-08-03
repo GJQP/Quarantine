@@ -50,9 +50,6 @@ namespace MEF
             
             // Inicializamos el dir actual
             currentDirectory = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)).FullName).FullName;
-            yoshiImgPath = Path.Combine(currentDirectory, "assets", "yoshi.jpg");
-            yoshi = Image.FromFile(yoshiImgPath);
-
           
             //colocar Background
             this.BackgroundImage = Image.FromFile(Path.Combine(currentDirectory, "assets", "background.png"));
@@ -78,7 +75,7 @@ namespace MEF
 
             // Colocamos la radio
             MiRadio.x = 530;
-            MiRadio.y = 370;
+            MiRadio.y = 350;
             MiRadio.activo = true;
 
             maquina.Inicializa(MiCama,MiCocina,MiRadio);
@@ -216,7 +213,7 @@ namespace MEF
         private void Form1_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
             // Creamos la fuente y la brocha para el texto
-            Font fuente = new Font("Arial", 16);
+            Font fuente = new Font("Arial", 8);
             SolidBrush brocha = new SolidBrush(Color.White);
            
             //e.Graphics.DrawImage AQUIIIIIIIIII
@@ -238,11 +235,11 @@ namespace MEF
             //e.Graphics.DrawImage(bailando, MiRadio.x - 4, MiRadio.y -4, 20, 20);
 
             // Indicamos el estado en que se encuentra la maquina
-            e.Graphics.DrawString("Estado -> " + maquina.EstadoM.ToString(), fuente, brocha, 10, 10);
+            e.Graphics.DrawString("Estado: " + maquina.EstadoM.ToString(), fuente, brocha, 10, 20);
 
-            e.Graphics.DrawString("Sueno -> " + maquina.SuenoM.ToString(), fuente, brocha, 10, 40);
+            e.Graphics.DrawString("Sueño: " + maquina.SuenoM.ToString(), fuente, brocha, 10, 35);
 
-            e.Graphics.DrawString("Hambre -> " + maquina.HambreM.ToString(), fuente, brocha, 10, 70);
+            e.Graphics.DrawString("Hambre: " + maquina.HambreM.ToString(), fuente, brocha, 10, 50);
 
 
         }
