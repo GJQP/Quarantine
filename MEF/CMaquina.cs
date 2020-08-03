@@ -81,7 +81,7 @@ namespace MEF
 			x=320;		// Coordenada X
 			y=240;		// Coordenada Y
 			//indice=-1;	// Empezamos como si no hubiera objeto a buscar
-			sueno = 2000;
+			sueno = 1500;
             hambre = 500;
 		}
 
@@ -99,10 +99,14 @@ namespace MEF
             
             imagenes[0] = Image.FromFile(Path.Combine(currentDirectory, "assets", "caminando.png")); //caminando
             imagenes[1] = Image.FromFile(Path.Combine(currentDirectory, "assets", "dormido.png")); //dormido
-            imagenes[2] = Image.FromFile(Path.Combine(currentDirectory, "assets", "comiendo.png")); //comiendo
-            imagenes[3] = Image.FromFile(Path.Combine(currentDirectory, "assets", "comiendo1.png")); //comiendo
-            imagenes[4] = Image.FromFile(Path.Combine(currentDirectory, "assets", "ninja.png")); //entretenido
-            imagenes[5] = Image.FromFile(Path.Combine(currentDirectory, "assets", "chrome.png")); //entretenido
+            imagenes[2] = Image.FromFile(Path.Combine(currentDirectory, "assets", "muerto.png")); //muerto
+            imagenes[3] = Image.FromFile(Path.Combine(currentDirectory, "assets", "comiendo.png")); //comiendo
+            imagenes[4] = Image.FromFile(Path.Combine(currentDirectory, "assets", "comiendo1.png")); //comiendo
+            imagenes[5] = Image.FromFile(Path.Combine(currentDirectory, "assets", "comiendo2.png")); //comiendo
+            imagenes[6] = Image.FromFile(Path.Combine(currentDirectory, "assets", "ninja.png")); //entretenido
+            imagenes[7] = Image.FromFile(Path.Combine(currentDirectory, "assets", "chrome.png")); //entretenido
+            imagenes[8] = Image.FromFile(Path.Combine(currentDirectory, "assets", "cool.png")); //entretenido
+            imagenes[9] = Image.FromFile(Path.Combine(currentDirectory, "assets", "bailando.png")); //entretenido
 		}
 
         public Image getImagen() {
@@ -120,7 +124,7 @@ namespace MEF
 
                     if (sueno < 0 || hambre < 0)
                     {
-                        imagenIndex = 0; //TODO tumbita
+                        imagenIndex = 2; 
                         Estado = (int)estados.MUERTO;
                     }
 
@@ -133,13 +137,13 @@ namespace MEF
 
                     if (x == cocina.x && y == cocina.y)
                     {
-                        imagenIndex = new Random().Next(2, 4);
+                        imagenIndex = new Random().Next(3, 6);
                         Estado = (int)estados.COMER;
                     }
 
                     if (x == sofa.x && y == sofa.y)
                     {
-                        imagenIndex = new Random().Next(4, 6);
+                        imagenIndex = new Random().Next(6, 10);
                         Estado = (int)estados.DIVERTIRSE;
                     }
 
@@ -149,7 +153,7 @@ namespace MEF
 
                     DORMIR();
 
-                    if (sueno >= 2000)
+                    if (sueno >= 1500)
                     {
 
                         Estado = (int)estados.TRASLADARSE;
