@@ -68,7 +68,7 @@ namespace MEF
 
             // Colocamos la cama
             MiCama.x = 300;
-            MiCama.y = 110;
+            MiCama.y = 105;
             MiCama.activo = true;
 
             // Colocamos la cocina
@@ -78,7 +78,7 @@ namespace MEF
 
             // Colocamos la radio
             MiRadio.x = 530;
-            MiRadio.y = 370;
+            MiRadio.y = 365;
             MiRadio.activo = true;
 
             maquina.Inicializa(MiCama,MiCocina,MiRadio);
@@ -221,11 +221,7 @@ namespace MEF
            
             //e.Graphics.DrawImage AQUIIIIIIIIII
             // Dibujamos el robot
-            if (maquina.EstadoM == (int)CMaquina.estados.MUERTO)
-                e.Graphics.DrawRectangle(Pens.Black, maquina.CoordX - 4, maquina.CoordY - 4, 40, 40);
-            else
-                //e.Graphics.DrawRectangle(Pens.Green, maquina.CoordX - 4, maquina.CoordY - 4, 20, 20);
-                e.Graphics.DrawImage(maquina.getImagen(), maquina.CoordX - 4, maquina.CoordY - 4, 40, 40);
+            e.Graphics.DrawImage(maquina.getImagen(), maquina.CoordX - 4, maquina.CoordY - 4, 40, 40);
 
             // Dibujamos la cama
             e.Graphics.DrawRectangle(Pens.IndianRed, MiCama.x - 4, MiCama.y - 4, 20, 20);

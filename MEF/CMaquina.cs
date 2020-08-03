@@ -51,6 +51,12 @@ namespace MEF
 
         private int imagenIndex; //llave de acceso a la imagen
 
+        //CONSTANTES DE TRANSICION
+        const int MAX_SUENO = 3000;
+        const int MAX_HAMBRE = 1500;
+        const int MIN_HAMBRE= 800;
+        const int MIN_SUENO = 1000;
+
 		// Creamos las propiedades necesarias
 		public int CoordX 
 		{
@@ -81,8 +87,8 @@ namespace MEF
 			x=320;		// Coordenada X
 			y=240;		// Coordenada Y
 			//indice=-1;	// Empezamos como si no hubiera objeto a buscar
-			sueno = 1500;
-            hambre = 500;
+			sueno = MAX_SUENO;
+            hambre = MAX_HAMBRE;
 		}
 
 		public void Inicializa(S_objeto cama, S_objeto cocina, S_objeto sofa)
@@ -143,6 +149,7 @@ namespace MEF
 
                     if (x == sofa.x && y == sofa.y)
                     {
+                        
                         imagenIndex = new Random().Next(6, 10);
                         Estado = (int)estados.DIVERTIRSE;
                     }
@@ -153,7 +160,7 @@ namespace MEF
 
                     DORMIR();
 
-                    if (sueno >= 1500)
+                    if (sueno >= MAX_SUENO)
                     {
 
                         Estado = (int)estados.TRASLADARSE;
@@ -165,7 +172,7 @@ namespace MEF
 
                     COMER();
 
-                    if (hambre == 500 || sueno < 400)
+                    if (hambre == MAX_HAMBRE || sueno < MIN_SUENO)
                         Estado = (int)estados.TRASLADARSE;
 
                     break;
@@ -174,7 +181,7 @@ namespace MEF
 
                     DIVERTIRSE();
 
-                    if (hambre < 200 || sueno < 400)
+                    if (hambre < MIN_HAMBRE || sueno < MIN_SUENO)
                         Estado = (int)estados.TRASLADARSE;
 
 
@@ -194,7 +201,7 @@ namespace MEF
 
         private void TRASLADARSE() {
             //ir a la cama SI TIENE SUEÑO
-            if (sueno < 400) //tiene sueno
+            if (sueno < MIN_SUENO) //tiene sueno
             {
                 //moverse
                 if (x < cama.x)
@@ -209,7 +216,7 @@ namespace MEF
 
             }
             //ir a la cocina SI TIENE HAMBRE Y NO TIENE SUEÑO
-            else if (hambre < 200)
+            else if (hambre < MIN_HAMBRE)
             {
                 //moverse
                 if (x < cocina.x)
