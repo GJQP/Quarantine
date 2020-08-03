@@ -21,3 +21,12 @@ C:\Users\Gustavo\Documents\Gustavo\UCAB\C#\MSF\C#\MEF\obj\Debug\MEF.Form1.resour
 C:\Users\Gustavo\Documents\Gustavo\UCAB\C#\MSF\C#\MEF\obj\Debug\MEF.csproj.GenerateResource.Cache
 C:\Users\Gustavo\Documents\Gustavo\UCAB\C#\MSF\C#\MEF\obj\Debug\MEF.exe
 C:\Users\Gustavo\Documents\Gustavo\UCAB\C#\MSF\C#\MEF\obj\Debug\MEF.pdb
+C:\Users\Miguel Octavio\Desktop\Maria V Semestre 6\Proyecto Arq\Quarantine\MEF\bin\Debug\MEF.exe.config
+C:\Users\Miguel Octavio\Desktop\Maria V Semestre 6\Proyecto Arq\Quarantine\MEF\bin\Debug\MEF.exe
+C:\Users\Miguel Octavio\Desktop\Maria V Semestre 6\Proyecto Arq\Quarantine\MEF\bin\Debug\MEF.pdb
+C:\Users\Miguel Octavio\Desktop\Maria V Semestre 6\Proyecto Arq\Quarantine\MEF\obj\Debug\MEF.csprojAssemblyReference.cache
+C:\Users\Miguel Octavio\Desktop\Maria V Semestre 6\Proyecto Arq\Quarantine\MEF\obj\Debug\MEF.Form1.resources
+C:\Users\Miguel Octavio\Desktop\Maria V Semestre 6\Proyecto Arq\Quarantine\MEF\obj\Debug\MEF.csproj.GenerateResource.cache
+C:\Users\Miguel Octavio\Desktop\Maria V Semestre 6\Proyecto Arq\Quarantine\MEF\obj\Debug\MEF.csproj.CoreCompileInputs.cache
+C:\Users\Miguel Octavio\Desktop\Maria V Semestre 6\Proyecto Arq\Quarantine\MEF\obj\Debug\MEF.exe
+C:\Users\Miguel Octavio\Desktop\Maria V Semestre 6\Proyecto Arq\Quarantine\MEF\obj\Debug\MEF.pdb

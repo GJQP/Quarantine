@@ -4,6 +4,8 @@ using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Data;
+using System.IO;
+using System.Reflection;
 
 namespace MEF
 {
@@ -29,8 +31,10 @@ namespace MEF
         public S_objeto MiRadio;
 
         //TEST
-        public Image yoshi = Image.FromFile("C:\\Users\\Gustavo\\Documents\\Gustavo\\UCAB\\C#\\MSF\\C#\\MEF\\Image1.jpg");
-
+        string currentDirectory;
+        string assetsFolder;
+        string yoshiImgPath;
+        public Image yoshi;
         public Form1()
         {
             //
@@ -42,10 +46,16 @@ namespace MEF
             // TODO: agregar código de constructor después de llamar a InitializeComponent
             //
 
-            // Inicializamos los objetos
+            currentDirectory = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)).FullName).FullName;
+            yoshiImgPath = Path.Combine(currentDirectory, "assets", "yoshi.jpg");
+            //yoshiImgPath = Path.Combine(assetsFolder, "yoshi.jpg");
+           // Console.WriteLine("yoshi Img Path", yoshiImgPath);
+            yoshi = Image.FromFile(yoshiImgPath);
 
-            // Cremos un objeto para tener valores aleatorios
-            Random random = new Random();
+        // Inicializamos los objetos
+
+        // Cremos un objeto para tener valores aleatorios
+        Random random = new Random();
 
             // Colocamos la cama
             MiCama.x = random.Next(0, 639);
