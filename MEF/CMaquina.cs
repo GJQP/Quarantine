@@ -1,4 +1,7 @@
 using System;
+using System.Drawing;
+using System.IO;
+using System.Reflection;
 
 
 namespace MEF
@@ -35,13 +38,18 @@ namespace MEF
 		// Arreglo para guardar una copia de los objetos
         private S_objeto cama;
         private S_objeto cocina;
-        private S_objeto radio;
+        private S_objeto sofa;
 
         //Variable para dormir 
         private int sueno;
 
         //Variable para hambre
         private int hambre;
+
+        //Arreglo de imagenes 
+        private Image[] imagenes = new Image[10];
+
+        private int imagenIndex; //llave de acceso a la imagen
 
 		// Creamos las propiedades necesarias
 		public int CoordX 
@@ -58,6 +66,10 @@ namespace MEF
 		{
 			get {return Estado;}
 		}
+
+        public int SuenoM { get { return sueno; } }
+
+        public int HambreM { get { return hambre; } }
 			
 		public CMaquina()
 		{
@@ -69,44 +81,67 @@ namespace MEF
 			x=320;		// Coordenada X
 			y=240;		// Coordenada Y
 			//indice=-1;	// Empezamos como si no hubiera objeto a buscar
-			sueno = 400;
-            hambre = 100;
+			sueno = 2000;
+            hambre = 500;
 		}
 
-		public void Inicializa(S_objeto cama, S_objeto cocina, S_objeto radio)
+		public void Inicializa(S_objeto cama, S_objeto cocina, S_objeto sofa)
 		{
 			// Colocamos una copia de los objetos y la bateria
 			// para pode trabajar internamente con la informacion
 
 			this.cama = cama;
             this.cocina = cocina;
-            this.radio = radio;
+            this.sofa = sofa;
 
+            //cargamos las imagenes
+            string currentDirectory = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)).FullName).FullName;
+            
+            imagenes[0] = Image.FromFile(Path.Combine(currentDirectory, "assets", "caminando.png")); //caminando
+            imagenes[1] = Image.FromFile(Path.Combine(currentDirectory, "assets", "dormido.png")); //dormido
+            imagenes[2] = Image.FromFile(Path.Combine(currentDirectory, "assets", "comiendo.png")); //comiendo
+            imagenes[3] = Image.FromFile(Path.Combine(currentDirectory, "assets", "comiendo1.png")); //comiendo
+            imagenes[4] = Image.FromFile(Path.Combine(currentDirectory, "assets", "ninja.png")); //entretenido
+            imagenes[5] = Image.FromFile(Path.Combine(currentDirectory, "assets", "chrome.png")); //entretenido
 		}
+
+        public Image getImagen() {
+            return imagenes[imagenIndex];
+        }
 
 		public void Control()
 		{
 			// Esta funcion controla la logica principal de la maquina de estados
-			
 			switch(Estado)
 			{
 				case ( int ) estados.TRASLADARSE:
                     TRASLADARSE();
+                    imagenIndex = 0;
 
-                    
                     if (sueno < 0 || hambre < 0)
+                    {
+                        imagenIndex = 0; //TODO tumbita
                         Estado = (int)estados.MUERTO;
+                    }
 
                     //moverse
                     if (x == cama.x && y == cama.y)
+                    {
+                        imagenIndex = 1;
                         Estado = (int)estados.DORMIR;
+                    }
 
                     if (x == cocina.x && y == cocina.y)
+                    {
+                        imagenIndex = new Random().Next(2, 4);
                         Estado = (int)estados.COMER;
+                    }
 
-                    if (x == radio.x && y == radio.y)
+                    if (x == sofa.x && y == sofa.y)
+                    {
+                        imagenIndex = new Random().Next(4, 6);
                         Estado = (int)estados.DIVERTIRSE;
-                       
+                    }
 
                     break;
 
@@ -114,8 +149,11 @@ namespace MEF
 
                     DORMIR();
 
-                    if (sueno == 400)
+                    if (sueno >= 2000)
+                    {
+
                         Estado = (int)estados.TRASLADARSE;
+                    }
 
                     break;
 
@@ -123,7 +161,7 @@ namespace MEF
 
                     COMER();
 
-                    if (hambre == 100 || sueno < 40)
+                    if (hambre == 500 || sueno < 400)
                         Estado = (int)estados.TRASLADARSE;
 
                     break;
@@ -132,7 +170,7 @@ namespace MEF
 
                     DIVERTIRSE();
 
-                    if (hambre < 10 || sueno < 40)
+                    if (hambre < 200 || sueno < 400)
                         Estado = (int)estados.TRASLADARSE;
 
 
@@ -151,9 +189,8 @@ namespace MEF
 		}
 
         private void TRASLADARSE() {
-
             //ir a la cama SI TIENE SUEÑO
-            if (sueno < 40) //tiene sueno
+            if (sueno < 400) //tiene sueno
             {
                 //moverse
                 if (x < cama.x)
@@ -168,7 +205,7 @@ namespace MEF
 
             }
             //ir a la cocina SI TIENE HAMBRE Y NO TIENE SUEÑO
-            else if (hambre < 10)
+            else if (hambre < 200)
             {
                 //moverse
                 if (x < cocina.x)
@@ -186,14 +223,14 @@ namespace MEF
             else
             {
                 //moverse
-                if (x < radio.x)
+                if (x < sofa.x)
                     x++;
-                else if (x > radio.x)
+                else if (x > sofa.x)
                     x--;
 
-                if (y < radio.y)
+                if (y < sofa.y)
                     y++;
-                else if (y > radio.y)
+                else if (y > sofa.y)
                     y--;
             }
 
@@ -204,7 +241,7 @@ namespace MEF
 
         private void DORMIR() {
             sueno++;
-            hambre--;
+            //hambre--;
         }
 
         private void COMER() {
@@ -212,7 +249,7 @@ namespace MEF
             sueno--;
         }
 
-        private void DIVERTIRSE() { 
+        private void DIVERTIRSE() {
            sueno--;
            hambre--;
         }

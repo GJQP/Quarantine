@@ -46,11 +46,11 @@ namespace MEF
             // TODO: agregar código de constructor después de llamar a InitializeComponent
             //
 
-            currentDirectory = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)).FullName).FullName;
-            yoshiImgPath = Path.Combine(currentDirectory, "assets", "yoshi.jpg");
+            //currentDirectory = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)).FullName).FullName;
+            //yoshiImgPath = Path.Combine(currentDirectory, "assets", "yoshi.jpg");
             //yoshiImgPath = Path.Combine(assetsFolder, "yoshi.jpg");
            // Console.WriteLine("yoshi Img Path", yoshiImgPath);
-            yoshi = Image.FromFile(yoshiImgPath);
+            //yoshi = Image.FromFile(yoshiImgPath);
 
         // Inicializamos los objetos
 
@@ -58,18 +58,18 @@ namespace MEF
         Random random = new Random();
 
             // Colocamos la cama
-            MiCama.x = random.Next(0, 639);
-            MiCama.y = random.Next(0, 479);
+            MiCama.x = random.Next(0, 100); //639;
+            MiCama.y = random.Next(100, 200); //479
             MiCama.activo = true;
 
             // Colocamos la cocina
-            MiCocina.x = random.Next(0, 639);
-            MiCocina.y = random.Next(0, 479);
+            MiCocina.x = random.Next(0, 100);
+            MiCocina.y = random.Next(100, 200);
             MiCocina.activo = true;
 
             // Colocamos la radio
-            MiRadio.x = random.Next(0, 639);
-            MiRadio.y = random.Next(0, 479);
+            MiRadio.x = random.Next(0, 100);
+            MiRadio.y = random.Next(100, 200);
             MiRadio.activo = true;
 
             maquina.Inicializa(MiCama,MiCocina,MiRadio);
@@ -212,10 +212,10 @@ namespace MEF
             //e.Graphics.DrawImage AQUIIIIIIIIII
             // Dibujamos el robot
             if (maquina.EstadoM == (int)CMaquina.estados.MUERTO)
-                e.Graphics.DrawRectangle(Pens.Black, maquina.CoordX - 4, maquina.CoordY - 4, 20, 20);
+                e.Graphics.DrawRectangle(Pens.Black, maquina.CoordX - 4, maquina.CoordY - 4, 40, 40);
             else
                 //e.Graphics.DrawRectangle(Pens.Green, maquina.CoordX - 4, maquina.CoordY - 4, 20, 20);
-                e.Graphics.DrawImage(yoshi, maquina.CoordX - 4, maquina.CoordY - 4, 20, 20);
+                e.Graphics.DrawImage(maquina.getImagen(), maquina.CoordX - 4, maquina.CoordY - 4, 40, 40);
 
             // Dibujamos la cama
             e.Graphics.DrawRectangle(Pens.IndianRed, MiCama.x - 4, MiCama.y - 4, 20, 20);
@@ -225,9 +225,14 @@ namespace MEF
 
             // Dibujamos la radio
             e.Graphics.DrawRectangle(Pens.Green, MiRadio.x - 4, MiRadio.y - 4, 20, 20);
+            //e.Graphics.DrawImage(bailando, MiRadio.x - 4, MiRadio.y -4, 20, 20);
 
             // Indicamos el estado en que se encuentra la maquina
             e.Graphics.DrawString("Estado -> " + maquina.EstadoM.ToString(), fuente, brocha, 10, 10);
+
+            e.Graphics.DrawString("Sueno -> " + maquina.SuenoM.ToString(), fuente, brocha, 10, 40);
+
+            e.Graphics.DrawString("Hambre -> " + maquina.HambreM.ToString(), fuente, brocha, 10, 70);
 
 
         }
