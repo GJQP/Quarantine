@@ -35,6 +35,7 @@ namespace MEF
         string assetsFolder;
         string yoshiImgPath;
         public Image yoshi;
+        public Image backgroundImg;
         public Form1()
         {
             //
@@ -45,31 +46,38 @@ namespace MEF
             //
             // TODO: agregar código de constructor después de llamar a InitializeComponent
             //
-
+            
+            // Inicializamos el dir actual
             currentDirectory = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)).FullName).FullName;
             yoshiImgPath = Path.Combine(currentDirectory, "assets", "yoshi.jpg");
-            //yoshiImgPath = Path.Combine(assetsFolder, "yoshi.jpg");
-           // Console.WriteLine("yoshi Img Path", yoshiImgPath);
             yoshi = Image.FromFile(yoshiImgPath);
 
-        // Inicializamos los objetos
+          
+            //colocar Background
+            this.BackgroundImage = Image.FromFile(Path.Combine(currentDirectory, "assets", "background.png"));
 
-        // Cremos un objeto para tener valores aleatorios
-        Random random = new Random();
+            // colocar para que no se repita la imagen
+            this.BackgroundImageLayout = ImageLayout.Stretch;
+            
+
+            // Inicializamos los objetos
+
+            // Cremos un objeto para tener valores aleatorios
+            Random random = new Random();
 
             // Colocamos la cama
-            MiCama.x = random.Next(0, 639);
-            MiCama.y = random.Next(0, 479);
+            MiCama.x = 300;
+            MiCama.y = 110;
             MiCama.activo = true;
 
             // Colocamos la cocina
-            MiCocina.x = random.Next(0, 639);
-            MiCocina.y = random.Next(0, 479);
+            MiCocina.x = 150;
+            MiCocina.y = 330;
             MiCocina.activo = true;
 
             // Colocamos la radio
-            MiRadio.x = random.Next(0, 639);
-            MiRadio.y = random.Next(0, 479);
+            MiRadio.x = 530;
+            MiRadio.y = 370;
             MiRadio.activo = true;
 
             maquina.Inicializa(MiCama,MiCocina,MiRadio);
@@ -209,6 +217,7 @@ namespace MEF
             // Creamos la fuente y la brocha para el texto
             Font fuente = new Font("Arial", 16);
             SolidBrush brocha = new SolidBrush(Color.Black);
+           
             //e.Graphics.DrawImage AQUIIIIIIIIII
             // Dibujamos el robot
             if (maquina.EstadoM == (int)CMaquina.estados.MUERTO)
