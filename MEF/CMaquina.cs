@@ -52,13 +52,11 @@ namespace MEF
         private int imagenIndex; //llave de acceso a la imagen
 
 
-        //variables para los condicionales
-        public int MAX_SUENO;
-        public int MAX_HAMBRE;
-        public int MIN_SUENO;
-        public int MIN_HAMBRE;
-        
-
+        //CONSTANTES DE TRANSICION
+        const int MAX_SUENO = 3000;
+        const int MAX_HAMBRE = 1500;
+        const int MIN_HAMBRE= 800;
+        const int MIN_SUENO = 1000;
 
 
 		// Creamos las propiedades necesarias
@@ -93,10 +91,6 @@ namespace MEF
                           //indice=-1;	// Empezamos como si no hubiera objeto a buscar
 
             //colocar los valores umbrales
-            MAX_SUENO = 3000;
-            MAX_HAMBRE = 1000;
-            MIN_SUENO = 800;
-            MIN_HAMBRE = 400;
             sueno = MAX_SUENO;
             hambre = MAX_HAMBRE;
 		}
@@ -159,6 +153,7 @@ namespace MEF
 
                     if (x == sofa.x && y == sofa.y)
                     {
+                        
                         imagenIndex = new Random().Next(6, 10);
                         Estado = (int)estados.DIVERTIRSE;
                     }
